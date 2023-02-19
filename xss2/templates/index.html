@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index XSS-2</title>
+
+    <style type="text/css">
+      .important {
+        color: #336699;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">XSS-2</a>
+        </div>
+        <div id="navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right"></ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <p class="important">
+        <a href="/vuln?param=<script>alert(1)</script>">vuln(xss) page</a>
+      </p>
+      <p class="important"><a href="/memo?memo=hello">memo</a></p>
+      <p class="important"><a href="/flag">flag</a></p>
+    </div>
+    <!-- /container -->
+  </body>
+</html>
