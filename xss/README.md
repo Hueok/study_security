@@ -15,3 +15,5 @@
 #### CSRF use point that the "website trusts USER's web browser."
 
 #### So, CSRF forge the request to get some USER's permission.
+
+<br>
