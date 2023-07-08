@@ -1,3 +1,3 @@
 # dreamhack.io
-studying web security \n
-hello
+# studying web security
+# hello
