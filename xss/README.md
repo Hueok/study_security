@@ -8,7 +8,7 @@
 
 #### XSS use point that the "USER trusts website".
 
-#### So, XSS take fake website or backdoor for client so that the user get deceived.
+#### So, XSS take fake website or backdoor to client so that the user get deceived.
 
 #### The start point of attack : When a person, not admin, can insert malware script in the website. While web application not accurately check the value user inputed.
 
