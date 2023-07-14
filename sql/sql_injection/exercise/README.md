@@ -15,7 +15,8 @@ filter = function(data){
 ```
 
 ### But filtering keyword is not secure. We can use sqli untill the fundamental vulerabililty exists.
-#### Here is the exploit code use blind sqli )
+> filtering is easily paralyzed by using regular expression "." that mean every character. ex) admin -> ad.in , DH{ -> D.{
+### Here is the exploit code use blind sqli )
 ```py
 import requests, string
 
