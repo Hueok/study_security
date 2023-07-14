@@ -16,3 +16,6 @@ In this code, the query generated including user's input so that sqli can evoke.
 admin" --
 ```
 in form of userid we can use this exploit to login for admin
+
+
+## NoSQL injection : 
