@@ -14,7 +14,7 @@ filter = function(data){
 #It returns True if banned keyword is included in your input.
 ```
 
-### But filtering keyword is not secure. We can use sqli untill the fundamental vulerabililty exists.
+### But keyword filtering system is not secure. We can use sqli untill the fundamental vulerabililty exists.
 > filtering is easily paralyzed by using regular expression "." that mean every character. ex) admin -> ad.in , DH{ -> D.{
 ### Here is the exploit code use blind sqli )
 ```py
