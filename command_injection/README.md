@@ -14,7 +14,7 @@
 host = request.form.get('host')
 cmd = f'ping -c 3 "{host}"'
 try:
-    output = subprocess.check_output(['/bin/sh', '-c', cmd], timeout=5)
+    output = subprocess.check_output(['/bin/sh', '-c', cmd], timeout=5) #The return data type of this function is string. except special case that has no data, in this case result is None
     return render_template('ping_result.html', data=output.decode('utf-8'))
 except subprocess.TimeoutExpired:
     return render_template('ping_result.html', data='Timeout !')
