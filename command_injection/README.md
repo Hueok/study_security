@@ -7,6 +7,7 @@
 ##### `;` : end former command and add new command in it's line  
 ##### `&&` : Logical And. 
 ##### `||` : Logical Or.  
+##### `$(command)` : return the result of command as value
 
 ## Problems I had.  
 ```py
