@@ -47,3 +47,10 @@ in this code, we can use sqli.
 ```
 this is the repeat of substitution.
 > $regex : select document which corresponds with regular expression
+<br>
+
+## SQL Features
+#### `UNION` : Link multiple `select`
+> Cautions : <li> Result of each linked `select` should have same number of columns. </li>  
+> <li> The data type of each linked `select` should same with each other.(applied only some dbms like mssql) </li>  
+####  : 
