@@ -55,5 +55,9 @@ this is the repeat of substitution.
 > <li> The data type of each linked `select` should same with each other.(applied only some dbms like mssql) </li>  
 #### `Subquery` : usage of inner query in a query.  
 > We can access other table the query not take, by use it. Also, we can use `select` where it is not used.  
-> Cautions : <li> Result of subquery should return __single row__ and __single column__ in the `columns` clause </li>  
+> Cautions :
+> <li> Result of subquery should return __single row__ and __single column__ in the `columns` clause </li>  
 > <li> Result of subquery can return __multiple row__ and __multiple columns__ in the `FROM` cluase</li>  
+> <li> Result of subquery can return __multiple row__ in the `WHERE` clause</li>
+#### `Applicaiton Logic`
+> by analyzing logic of web application, we can attack with `union`, `if()` and etc.... <- whether logic has output or not is very important to us.
