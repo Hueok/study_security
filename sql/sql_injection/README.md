@@ -46,7 +46,7 @@ in this code, we can use sqli.
 {"uid": "admin", "upw": {"$regex":"^apple$"}}
 ```
 this is the repeat of substitution.
-> $regex : select document which corresponds with regular expression
+> $regex : select document which corresponds with regular expression (more about regex : https://wooncloud.com/113#%EC%--%B-%EC%BB%A-%---Anchors-)
 <br>
 
 ## SQL Features
