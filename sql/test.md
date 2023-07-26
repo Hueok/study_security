@@ -8,27 +8,7 @@
 
 #### NoSQL use key-value storing method while RDBMS use TABLE. -> Optimized store capacity.
 
-## ExploitTech : blind sqli advanced
-
-#### Binary Search : **_Binary Search based on a assumtion that data is sorted._** Set range(n,m). As example, let range as (0,100). This method compare target data with middle-orderd data, and regenerate data range (0,50) if target <= middle else range(51, 100). repeat it so that target be captured
-
-> example
->
-> ```sql
-> mysql> select * from users where username='admin' and ascii(substr(password, 1, 1))>79;
-> /* This exploit compare first word of password with ascii_middle_value:79 */
-> ```
-
-#### Bit Calculation : ascii letter can express range from 0 to 127 so that we can express it also with 7 bit. By using repeat of exploit statement including useful function like `bin` and `substr`, we can find password
-
-> example
->
-> ```sql
-> mysql> select * from users where username='admin' and substr(bin(ord(password)),1,1)=1;
-> mysql> select * from users where username='admin' and substr(bin(ord(password)),2,1)=1;
-> ...
-> mysql> select * from users where username='admin' and substr(bin(ord(password)),7,1)=1;
-> ```
+<br/>
 
 # SQL injection : in raw query which created dynamically
 
@@ -84,8 +64,8 @@ in this code, we can use sqli.
 
 this is the repeat of substitution.
 
-> $regex : select document which corresponds with regular expression (more about regex : https://wooncloud.com/113#%EC%--%B-%EC%BB%A-%---Anchors-)
-> <br>
+> $regex : select document which corresponds with regular expression
+<br/>
 
 ## SQL Features
 
@@ -107,8 +87,9 @@ this is the repeat of substitution.
 #### `Applicaiton Logic`
 
 > by analyzing logic of web application, we can attack with `union`, `if()` and etc.... <- whether logic has output or not is very important to us.
+<br/>
 
-# This exercise is set to MongoDB.
+# Below exercise is set to MongoDB.
 
 ### It has filter like below.
 
@@ -161,3 +142,26 @@ print(f'flag : DH{{{flag}}}')
 ```
 
 first, code find the length of the password and then, using for loop with range(LENGTH OF PWD), find flag by repeating substition.
+<br/>
+
+## ExploitTech : blind sqli advanced
+
+#### Binary Search : **_Binary Search based on a assumtion that data is sorted._** Set range(n,m). As example, let range as (0,100). This method compare target data with middle-orderd data, and regenerate data range (0,50) if target <= middle else range(51, 100). repeat it so that target be captured
+
+> example
+>
+> ```sql
+> mysql> select * from users where username='admin' and ascii(substr(password, 1, 1))>79;
+> /* This exploit compare first word of password with ascii_middle_value:79 */
+> ```
+
+#### Bit Calculation : ascii letter can express range from 0 to 127 so that we can express it also with 7 bit. By using repeat of exploit statement including useful function like `bin` and `substr`, we can find password
+
+> example
+>
+> ```sql
+> mysql> select * from users where username='admin' and substr(bin(ord(password)),1,1)=1;
+> mysql> select * from users where username='admin' and substr(bin(ord(password)),2,1)=1;
+> ...
+> mysql> select * from users where username='admin' and substr(bin(ord(password)),7,1)=1;
+> ```
