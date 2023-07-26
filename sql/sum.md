@@ -1,6 +1,10 @@
 ## RDBMS : Relational Database Management System
 
 > RDBMS has limit of capacity because it use second-dementional table.
+> To check server status in mysql:
+> ```terminal
+> netstat -an |grep LISTEN
+> ```
 
 ## NRDBMS : Non - RDBMS (NoSQL)
 
