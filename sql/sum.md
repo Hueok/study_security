@@ -93,7 +93,7 @@ this is the repeat of substitution.
 > by analyzing logic of web application, we can attack with `union`, `if()` and etc.... <- whether logic has output or not is very important to us.
 <br/>
 
-# Below exercise is set to MongoDB.
+## Below exercise is set to MongoDB.
 
 ### It has filter like below.
 
@@ -169,3 +169,6 @@ first, code find the length of the password and then, using for loop with range(
 > ...
 > mysql> select * from users where username='admin' and substr(bin(ord(password)),7,1)=1;
 > ```
+<br />
+
+## Exercise
