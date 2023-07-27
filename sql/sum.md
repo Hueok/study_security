@@ -168,7 +168,25 @@ first, code find the length of the password and then, using for loop with range(
 > mysql> select * from users where username='admin' and substr(bin(ord(password)),2,1)=1;
 > ...
 > mysql> select * from users where username='admin' and substr(bin(ord(password)),7,1)=1;
-> ```
+> ```  
+
+#### Error based SQLi : Cause error voluntarily to get info about target(OS info, database info, ...). Target web application is required to turnned on debug mode or to have error exception handling.  
+> example
+> ```sql
+> SELECT extractvalue(1,concat(0x3a,version()));
+> # extractvalue(XML, XPATH) function extract value from XML with XPATH. If XPATH is incorrect, it return error message __with incorrect construction__.
+> ```  
+
+#### Error based Blind SQLi : Error based SQLi + Blind SQLi : It use contitional statement and short circuit evaluation. From this, we can test if our statement is true.
+> example
+> ```sql
+> mysql> select if(1=1, 9e307*2,0)
+> mysql> select if(1=1, sleep(10),0) #Same with Time Based SQLi conception
+>  /* ERROR 1690 (22003): DOUBLE value is out of range in '(9e307 * 2)' */
+> mysql> SELECT 0 AND SLEEP(1);
+> mysql> SELECT 1 AND SLEEP(10);
+> ```  
+
 <br />
 
 ## Exercise : blind sqli advanced  
