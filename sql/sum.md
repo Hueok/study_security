@@ -175,6 +175,7 @@ first, code find the length of the password and then, using for loop with range(
 > ```sql
 > SELECT extractvalue(1,concat(0x3a,version()));
 > # extractvalue(XML, XPATH) function extract value from XML with XPATH. If XPATH is incorrect, it return error message __with incorrect construction__.
+> SELECT extractvalue(1,concat(0x3a,(subquery));
 > ```  
 
 #### Error based Blind SQLi : Error based SQLi + Blind SQLi : It use contitional statement and short circuit evaluation. From this, we can test if our statement is true.
