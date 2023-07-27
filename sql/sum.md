@@ -223,7 +223,8 @@ flag = ''
 for i in range(13):
     flag += int.to_bytes(int(bits_db[i],2), length=bit_length_db[i]+7 // 8, byteorder='big').decode()
 print(flag)
-```  
+```
+`int.to_bytes(length:int, byteorder:str, signed:bool)` convert int to bytes
 
 I didn't think about `step 2` fully, and `step 3` and `step 4` were hard to me to code.  
 But the concept of step 2 is important I think. I try without this concept. Thanks to it, I was confused with what bytes the character has.  
