@@ -274,7 +274,7 @@ mysql> select TABLE_SCHEMA, TABLE_NAME from information_schema.TABLES;
 mssql> SELECT name FROM dreamhack..sysobjects WHERE xtype = 'U';
 mssql> SELECT table_name FROM dreamhack.information_schema.tables;
 postgres=$ select table_name from information_schema.tables where table_schema='pg_catalog';
-postgres=# select table_name from information_schema.tables where table_schema='information_schema'; -- pg_catalog, information_schema are name of schema.
+postgres=$ select table_name from information_schema.tables where table_schema='information_schema'; -- pg_catalog, information_schema are name of schema.
 postgres=$ select table_schema, table_name from information_schema.tables;
 ```
 #### Column info:
