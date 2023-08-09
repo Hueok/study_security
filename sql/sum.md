@@ -248,4 +248,56 @@ print(flag)
 I didn't think about `step 2` fully, and `step 3` and `step 4` were hard to me to code.  
 But the concept of step 2 is important I think. I try without this concept. Thanks to it, I was confused with what bytes the character has.  
 So I used for-loop so that the bytes is fixed at one in python exploit code. In fact, ascii only take 1-byte while korean take 3-bytes in utf-8.  
-To solve it, use while-loop like `step 1` to take non-fixed length bits by ascending count var(like `bit_length+=1`).
+To solve it, use while-loop like `step 1` to take non-fixed length bits by ascending count var(like `bit_length+=1`).  
+<br />
+
+## Fingerprinting
+#### System schema : if sqli allowed, take info by taking system schema.  
+#### Get system table :
+```sql
+mysql> show databases;
+mssql> select name from sys.databases;
+postgres=$ select datname from pg_database;
+oracle> select DISTINCT owner from all_tables
+oracle> select owner, table_name from all_datables
+sqlite> select * from sqlite_master;
+```
+#### Schema info :
+```sql
+mysql> select TABLE_SCHEMA from information_schema.tables group by TABLE_SCHEMA;
+mssql> SELECT name FROM master..sysdatabases;
+postgres=$ select nspname from pg_catalog.pg_namespace;
+```
+#### Table info:
+```sql
+mysql> select TABLE_SCHEMA, TABLE_NAME from information_schema.TABLES;
+mssql> SELECT name FROM dreamhack..sysobjects WHERE xtype = 'U';
+mssql> SELECT table_name FROM dreamhack.information_schema.tables;
+postgres=$ select table_name from information_schema.tables where table_schema='pg_catalog';
+postgres=# select table_name from information_schema.tables where table_schema='information_schema'; -- pg_catalog, information_schema are name of schema.
+postgres=$ select table_schema, table_name from information_schema.tables;
+```
+#### Column info:
+```sql
+mysql> select TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME from information_schema.COLUMNS;
+mssql> SELECT name FROM syscolumns WHERE id = (SELECT id FROM sysobjects WHERE name = 'users');
+mssql> SELECT table_name, column_name FROM dreamhack.information_schema.columns;
+postgres=$ select table_schema, table_name, column_name from information_schema.columns;
+oracle> SELECT column_name FROM all_tab_columns WHERE table_name = 'users'
+```
+#### Live query info:
+```sql
+mysql> select * from information_schema.PROCESSLIST;
+mysql> select user,current_statement from sys.session;
+postgres=$ select usename, query from pg_catalog.pg_stat_activity;
+```
+#### DBMS account info:
+```sql
+mysql> select GRANTEE,PRIVILEGE_TYPE,IS_GRANTABLE from information_schema.USER_PRIVILEGES;
+mysql> select User, authentication_string from mysql.user;
+mssql> SELECT name, password_hash FROM master.sys.sql_logins;
+mssql> SELECT * FROM master..syslogins;
+postgres=$ select usename, passwd from pg_catalog.pg_shadow;
+postgres=$ select name, setting from pg_catalog.pg_settings;
+oracle> SELECT * FROM all_users
+```
