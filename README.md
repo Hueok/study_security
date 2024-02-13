@@ -17,3 +17,14 @@ dd
 > ```
 
 </br>
+
+# Additional...
+
+#### For `WSL`, the command openning explorer with some path can be assigned.
+```bash
+function open() {
+  Explorer.exe ${1//\//\\}
+}
+export -f open
+```
+add to `~/.bashrc`
